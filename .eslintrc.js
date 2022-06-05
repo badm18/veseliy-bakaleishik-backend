@@ -2,24 +2,54 @@ module.exports = {
   parser: '@typescript-eslint/parser',
   parserOptions: {
     project: 'tsconfig.json',
-    tsconfigRootDir : __dirname, 
     sourceType: 'module',
   },
-  plugins: ['@typescript-eslint/eslint-plugin'],
+  plugins: [
+    '@typescript-eslint/eslint-plugin',
+    'import',
+    'typescript'
+  ],
   extends: [
+    'airbnb-base',
     'plugin:@typescript-eslint/recommended',
-    'plugin:prettier/recommended',
+    'typescript'
   ],
   root: true,
   env: {
     node: true,
-    jest: true,
   },
   ignorePatterns: ['.eslintrc.js'],
   rules: {
-    '@typescript-eslint/interface-name-prefix': 'off',
-    '@typescript-eslint/explicit-function-return-type': 'off',
-    '@typescript-eslint/explicit-module-boundary-types': 'off',
-    '@typescript-eslint/no-explicit-any': 'off',
+    "import/prefer-default-export": "off",
+    "no-useless-constructor": "off",
+    "dot-notation": "off",
+    "camelcase": "off",
+    "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "js": "never",
+        "jsx": "never",
+        "ts": "never",
+        "tsx": "never"
+      }
+    ],
+    "indent": ["error", 2],
+    "semi" : "off" ,
+    "@typescript-eslint/semi" : [ "error" ],
+    "import/no-extraneous-dependencies": "warn",
+    "class-methods-use-this": "warn",
+    "object-curly-newline": "warn",
   },
+  settings: {
+    "import/parsers": {
+      "@typescript-eslint/parser": [".ts", ".tsx"]
+    },
+    "import/resolver": {
+      node: {
+        extensions: ['.js', '.jsx', '.ts', '.tsx'],
+      },
+    }
+  }
 };
